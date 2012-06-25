@@ -17,7 +17,7 @@ depends=('libaio>=0.3.104' 'gcc>=4.1.2' 'binutils>=2.16.91.0.5' 'make>=3.80' 'gl
 makedepends=('rpmextract')
 install='oracle.install'
 source=("$_rpm" "LICENSE" "init-script.patch")
-md5sums=('3371612d47e1a0a4cc8f53470b1f4fe3' '0e8646f7081283d24671b938dabd0fbe' '7232e7e6972aefff49ac4b60e14d3fbd')
+md5sums=('3371612d47e1a0a4cc8f53470b1f4fe3' '0e8646f7081283d24671b938dabd0fbe' '42c7d21d662e39989768d8225f94044b')
 _memory_target=256M
 
 build() {
