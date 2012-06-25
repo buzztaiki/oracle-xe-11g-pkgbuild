@@ -1,0 +1,54 @@
+post_install() {
+   
+	if [ -e `grep dba /etc/group` ]; then
+		echo
+		echo -n "creating group \"dba\" ..."
+		groupadd dba
+		echo "done"
+		echo
+	fi
+
+	if [ -e `grep oracle /etc/passwd` ]; then
+		echo -n "creating user \"oracle\" ..."
+		useradd -g dba oracle
+		echo "done"
+		echo
+	fi 		 
+
+	echo -n "change directory rights ..."
+	chown -R oracle:dba /u01/app/oracle
+	echo "done"
+	echo
+
+	echo -n "set sticky bit to oracle executable ..."
+	chmod 6755 /u01/app/oracle/product/11.2.0/xe/bin/oracle
+	echo "done"
+	echo
+	
+	echo "run \"/etc/rc.d/oracle-xe configure\" to finalize your installation"
+	echo
+	echo "add your user to the \"dba\" group in order to use the oracle tools"
+	echo
+}
+
+pre_remove() {
+	/etc/rc.d/oracle-xe stop
+}
+
+post_remove() {
+
+	if [ -f /etc/oratab ]; then
+		echo -n "remove /etc/oratab ..."
+		rm /etc/oratab
+		echo "done"	
+	fi
+}
+
+post_upgrade() {
+	/bin/true
+}
+ 
+op=$1
+shift
+ 
+$op "$@"
