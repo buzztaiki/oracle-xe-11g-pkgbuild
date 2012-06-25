@@ -25,18 +25,18 @@ build() {
 }
 
 package() {
-  _oracle_home=u01/app/oracle/product/11.2.0/xe
+  local oracle_home=u01/app/oracle/product/11.2.0/xe
 
   cp -a {etc,usr,u01} $pkgdir
 
   install -Dm755 $srcdir/etc/init.d/oracle-xe $pkgdir/etc/rc.d/oracle-xe
   rm -rf $pkgdir/etc/init.d
 
-  install -Dm755 $srcdir/$_oracle_home/bin/oracle_env.sh $pkgdir/etc/profile.d/oracle_env.sh
-  rm $_oracle_home/bin/{zip,unzip}
+  install -Dm755 $srcdir/$oracle_home/bin/oracle_env.sh $pkgdir/etc/profile.d/oracle_env.sh
+  rm $oracle_home/bin/{zip,unzip}
 
-  sed -i "s/%memory_target%/$_memory_target/g" $pkgdir/$_oracle_home/config/scripts/init.ora 
-  chmod 755 $pkgdir/$_oracle_home/config/scripts/*.sh
+  sed -i "s/%memory_target%/$_memory_target/g" $pkgdir/$oracle_home/config/scripts/init.ora 
+  chmod 755 $pkgdir/$oracle_home/config/scripts/*.sh
 
   install -Dm644 LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
 }
