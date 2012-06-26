@@ -32,7 +32,7 @@ package() {
   ln -s ../../$oracle_home/bin/oracle_env.sh $pkgdir/etc/profile.d/oracle_env.sh
   rm $pkgdir/$oracle_home/bin/{zip,unzip}
 
-  sed -i "s/%memory_target%/$_memory_target/g" $pkgdir/$oracle_home/config/scripts/init.ora 
+  sed -i "s/%memory_target%/$_memory_target/g" $pkgdir/$oracle_home/config/scripts/{init.ora,initXETemp.ora}
   chmod 755 $pkgdir/$oracle_home/config/scripts/*.sh
 
   install -Dm644 LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
