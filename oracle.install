@@ -42,6 +42,12 @@ post_remove() {
 		rm /etc/oratab
 		echo "done"	
 	fi
+
+	if [ -f /etc/default/oracle-xe ]; then
+		echo -n "remove /etc/default/oracle-xe ..."
+		rm /etc/default/oracle-xe
+		echo "done"	
+	fi
 }
 
 post_upgrade() {
